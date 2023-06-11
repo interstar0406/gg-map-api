@@ -1,0 +1,748 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Cacher Class</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="dreamcatchers-map">
+        <div id="map-wrapper">
+            <div class="col-6" id="nguyenmapmenu"></div>
+            <div class="col-6" id="nguyenmapinit"></div>
+        </div>
+    </div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAa3dgQJ4ZoBknb71I_IJR1fMEAFd8hoyo&libraries=visualization,places"></script>
+    <script
+        src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script>
+        // data Dream Catchers
+        var urlMakerClass = 'https://cdn.shopify.com/s/files/1/0771/0254/7228/files/DC-class-marker.png?v=1686425766';
+        var urlMakerClassActive = 'https://cdn.shopify.com/s/files/1/0771/0254/7228/files/DC-headquarters-marker.png?v=1686425766';
+        var nguyenmaps = [
+            {
+                'Code': 0,
+                'Name': 'Dreamcatchers headquarters',
+                'City': '',
+                'State': 'Texas',
+                'Country': 'USA',
+                'Location': {
+                    'Latitude': 33.1166119,
+                    'Longitude': -96.6655933
+                },
+                'Address': '361 E Exchange Parkway Allen, Texas',
+                'zipcode': 75002,
+                'URL': '',
+                'Phone': '1-855-373-2683',
+                'icon': urlMakerClassActive,
+                'Photo': '',
+                'Date': '',
+                'Systems': '',
+                'Available Seats': '',
+                'Educator': [],
+                'Description': '',
+            },
+
+            {
+                'Code': 447750668572,
+                'Name': 'Class 1',
+                'Area': 'Seattle, WA',
+
+                'Location': {
+                    'Latitude': 47.6066675,
+                    'Longitude': -122.3332598
+                },
+
+                'Address': 'Renaissance Seattle Hotel 515 Madison St. Seattle, Washington 98104',
+                'URL': '/collections/kid',
+                'Phone': '1-855-373-2683',
+                'icon': urlMakerClass,
+
+                'Photo': '<img src="//cdn.shopify.com/s/files/1/0771/0254/7228/collections/3b6a545a8f309a6085625bcadcb19712_large.jpg?v=1686466865" alt="Class 1" />',
+
+                'Date': [
+                    'Jun 11-2023 - Welt & K-tip', 'Jun 12-2023 - Welt & K-tip',
+                ],
+                'Systems': 'I-Tips, Tape,...',
+                'Available Seats': 'Seats are limited',
+                'Educator': [
+                    'Amy Hail', 'Ruben Vargas Jr'
+                ],
+                'Status': false,
+            },
+
+            {
+                'Code': 447750635804,
+                'Name': 'Class 2',
+                'Area': 'Virginia Beach, VA',
+
+                'Location': {
+                    'Latitude': 36.9131003,
+                    'Longitude': -76.0708098
+                },
+
+                'Address': 'Delta Bayfront Suite 2800 Shore Drive Virginia Beach, VA 23451',
+                'URL': '/collections/women',
+                'Phone': '1-855-373-2683',
+                'icon': urlMakerClass,
+
+                'Photo': '<img src="//cdn.shopify.com/s/files/1/0771/0254/7228/collections/0711d7a9ab22e1d866c244756574349b_large.jpg?v=1686467107" alt="Class 2" />',
+
+                'Date': [
+                    'Jun 11-2023 - Welt & K-tip', 'Jun 12-2023 - Welt & K-tip',
+                ],
+                'Systems': 'I-Tips, Tape,...',
+                'Available Seats': 'Seats are limited',
+                'Educator': [
+                    'Amy Hail', 'Ruben Vargas Jr'
+                ],
+                'Status': true,
+            },
+
+            {
+                'Code': 447750603036,
+                'Name': 'Class 3',
+                'Area': 'Franklin, TN',
+
+                'Location': {
+                    'Latitude': 35.9508885,
+                    'Longitude': -86.8107847
+                },
+
+                'Address': 'Courtyard Franklin/Cool Springs 2001 Meridian Blvd Franklin, TN 37067',
+                'URL': '/collections/men',
+                'Phone': '1-855-373-2683',
+                'icon': urlMakerClass,
+
+                'Photo': '<img src="//cdn.shopify.com/s/files/1/0771/0254/7228/collections/cde37406b76337f4438c62f57be75df2_large.jpg?v=1686467521" alt="Class 3" />',
+
+                'Date': [
+                    'Jun 11-2023 - Welt & K-tip', 'Jun 12-2023 - Welt & K-tip',
+                ],
+                'Systems': 'I-Tips, Tape,...',
+                'Available Seats': 'Seats are limited',
+                'Educator': [
+                    'Amy Hail'
+                ],
+                'Status': true,
+            },
+
+            {
+                'Code': 447750504732,
+                'Name': 'Class 4',
+                'Area': 'Santa Barbara, CA',
+
+                'Location': {
+                    'Latitude': 36.1636658,
+                    'Longitude': -86.7810716
+                },
+
+                'Address': 'Courtyard Santa Barbara Downtown 1601 State Street, Santa Barbara, Ca. 93101',
+                'URL': '/collections/dr-martens',
+                'Phone': '1-855-373-2683',
+                'icon': urlMakerClass,
+
+                'Photo': '<img src="//cdn.shopify.com/s/files/1/0771/0254/7228/collections/a5f66d7e0c3e36ebbd2b7b632b2e4c47_large.jpg?v=1686467504" alt="Class 4" />',
+
+                'Date': [
+                    'Jun 11-2023 - Welt & K-tip',
+                ],
+                'Systems': 'I-Tips, Tape,...',
+                'Available Seats': 'Seats are limited',
+                'Educator': [
+                    'Ruben Vargas Jr'
+                ],
+                'Status': true,
+            },
+
+        ];
+        var mapStyle = [
+            {
+                "featureType": "all",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "saturation": 36
+                    },
+                    {
+                        "color": "#333333"
+                    },
+                    {
+                        "lightness": 40
+                    }
+                ]
+            },
+            {
+                "featureType": "all",
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 16
+                    }
+                ]
+            },
+            {
+                "featureType": "all",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 20
+                    },
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#343433"
+                    },
+                    {
+                        "lightness": 17
+                    },
+                    {
+                        "weight": 1.2
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#f5f5f5"
+                    },
+                    {
+                        "lightness": 20
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#f5f5f5"
+                    },
+                    {
+                        "lightness": 21
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#dedede"
+                    },
+                    {
+                        "lightness": 21
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 17
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 29
+                    },
+                    {
+                        "weight": 0.2
+                    }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 18
+                    }
+                ]
+            },
+            {
+                "featureType": "road.local",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 16
+                    }
+                ]
+            },
+            {
+                "featureType": "transit",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#f2f2f2"
+                    },
+                    {
+                        "lightness": 19
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#e9e9e9"
+                    },
+                    {
+                        "lightness": 17
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#8ab3f6"
+                    },
+                    {
+                        "saturation": "0"
+                    }
+                ]
+            }
+        ];
+    </script>
+    <script>
+        function initMap() {
+            // Tạo một đối tượng bản đồ và gắn nó vào phần tử div có id "map"
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10, // Thu phóng ban đầu
+                center: { lat: 0, lng: 0 } // Tọa độ ban đầu của bản đồ
+            });
+
+            var addresses = [
+                // Danh sách các địa chỉ của bạn
+                "Địa chỉ 1",
+                "Địa chỉ 2",
+                "Địa chỉ 3"
+            ];
+            addresses = nguyenmaps.map(function (param) { 
+                return param.Address;
+            })
+
+            // Chuyển đổi danh sách địa chỉ thành yêu cầu dạng batch
+            var geocoder = new google.maps.Geocoder();
+            var geocodeRequests = [];
+            addresses.forEach(function (address) {
+                geocodeRequests.push({ address: address });
+            });
+
+            // Gọi dịch vụ Geocoding Batch
+            geocoder.geocode({ 'address': JSON.stringify(geocodeRequests) }, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    // Lặp qua từng kết quả Geocoding và tạo đánh dấu trên bản đồ
+                    results.forEach(function (result) {
+                        // Lấy tọa độ của địa chỉ
+                        var location = result.geometry.location;
+
+                        // Tạo một đánh dấu trên bản đồ
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: location,
+                            title: result.formatted_address
+                        });
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+        if (nguyenmaps.length) {
+            var map;
+            var Data = [];
+            var viewportMarkers = [];
+            var infoWindow;
+            var handle1, handle2;
+            var markerCount = 0;
+
+            // Calculate zoom
+            function fitMarkersBounds(map, markers) {
+                var bounds = new google.maps.LatLngBounds();
+
+                for (var i = 0; i < markers.length; i++) {
+                    bounds.extend(new google.maps.LatLng(markers[i].Location.Latitude, markers[i].Location.Longitude));
+                }
+
+                map.fitBounds(bounds);
+            }
+
+            // Calculate center point
+            function calculateCenterPoint(markers) {
+                var totalLat = 0;
+                var totalLng = 0;
+
+                for (var i = 0; i < markers.length; i++) {
+                    totalLat += markers[i].Location.Latitude;
+                    totalLng += markers[i].Location.Longitude;
+                }
+
+                var averageLat = totalLat / markers.length;
+                var averageLng = totalLng / markers.length;
+
+                return { lat: averageLat, lng: averageLng };
+            }
+
+            var centerPoint = calculateCenterPoint(nguyenmaps);
+            var centerLat = centerPoint.lat;
+            var centerLng = centerPoint.lng;
+
+            function initMap() {
+                var iniZoom = 5;
+                var myLatLng = new google.maps.LatLng(centerLat, centerLng);
+
+                var options = {
+                    zoom: iniZoom,
+                    center: myLatLng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    styles: mapStyle
+                }
+
+                map = new google.maps.Map(document.getElementById('nguyenmapinit'), options);
+                fitMarkersBounds(map, nguyenmaps);
+                showMarkersInViewport()
+
+                google.maps.event.addListener(map, 'idle', function () {
+                    for (i = 0; i < viewportMarkers.length; i++) {
+                        viewportMarkers[i].setMap(null);
+                    }
+                    var markerCluster = new MarkerClusterer(map, viewportMarkers, {
+                        styles: [{
+                            width: 53,
+                            height: 52,
+                            fontFamily: 'Arial',
+                            textColor: 'white',
+                            url: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png',
+                            className: 'cluster-icon' // Áp dụng lớp CSS cho cluster
+                        }]
+                    });
+                });
+            }
+
+            // Create a function to add markers to the map.
+            function showMarkersInViewport() {
+                if (viewportMarkers != null) {
+                    for (i = 0; i < viewportMarkers.length; i++) {
+                        viewportMarkers[i].setMap(null);
+                    }
+                    viewportMarkers = [];
+
+                    // close any open infoWindows when the map is clicked
+                    google.maps.event.addListener(map, "click", function () {
+                        if (infoWindow) {
+                            infoWindow.close();
+                        }
+                    });
+
+                    // Set the results box row color back to normal when the map is clicked
+                    google.maps.event.addListener(map, 'click', function selectDataRow(code) {
+                        var table = document.getElementById("tbl");
+                        if (table) {
+                            for (var i = 1, row; row = table.rows[i]; i++) {
+                                row.style.backgroundColor = "#ffffff";
+                            }
+                        }
+                    });
+                }
+
+                // Create a table to hold the info of the markers on the map.
+                var divTable = '<div class="maplist">'
+                var nguyenmapsInViewport = nguyenmaps;
+                if (nguyenmapsInViewport == null) return;
+                //   3. Add a new row to the table beside the map that summarizes the nguyenmaps on the map
+                for (i = 0; i < nguyenmapsInViewport.length; i++) {
+                    let currentMarker = nguyenmapsInViewport[i];
+                    // create a new marker
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(currentMarker.Location.Latitude, currentMarker.Location.Longitude),
+                        icon: {
+                            url: currentMarker.icon,
+                        },
+                        title: currentMarker.Name
+                    });
+                    if (currentMarker.Code !== 0) {
+                        var html = '';
+                        html += '<div class="grid-product__content">';
+                        if (currentMarker.Status !== true) {
+                            html += '  <div class="grid-product__tag">';
+                            html += '    Sold Out';
+                            html += '  </div>';
+                        }
+
+
+                        html += '  <a href="' + currentMarker.URL + '" class="grid-product__link  grid-product__link--disabled">';
+                        // html += '    <div class="over-video">';
+                        // html += '      <img class="small--hide" src="//cdn.shopify.com/s/files/1/0130/9425/6699/files/logo-nav-blak-pink_110x.png?v=1543333002" srcset="//cdn.shopify.com/s/files/1/0130/9425/6699/files/logo-nav-blak-pink_110x.png?v=1543333002 1x, //cdn.shopify.com/s/files/1/0130/9425/6699/files/logo-nav-blak-pink_110x@2x.png?v=1543333002 2x" alt="DreamCatchers Hair Extensions" itemprop="logo">';
+                        // html += '      <h3>Hands-On <span>training</span></h3>';
+                        // html += '    </div>';
+                        if (currentMarker.Photo !== null && currentMarker.Photo !== '') {
+                            html += '  <div class="grid-product__image">';
+                            html += currentMarker.Photo;
+                            html += '  </div>';
+                        }
+                        html += '  </a>';
+
+                        html += '  <div class="grid-product__meta">';
+                        html += '    <a href="' + currentMarker.URL + '" class="grid-product__link  grid-product__link--disabled">';
+                        html += '      <ul>';
+
+                        if (currentMarker.Date.length > 0) {
+                            var dateString = currentMarker.Date.map(function (date) {
+                                return date;
+                            }).join('<br>');
+                            html += '        <li>';
+                            html += '          <label>Date</label>';
+                            html += '          <span>' + dateString + '</span>';
+                            html += '        </li>';
+                        }
+
+                        if (currentMarker.Area !== '' && currentMarker.Area !== '') {
+                            html += '        <li>';
+                            html += '          <label>Location</label>';
+                            html += '          <span>' + currentMarker.Area + '</span>';
+                            html += '        </li>';
+                        }
+
+                        if (currentMarker.Systems !== '') {
+                            html += '        <li>';
+                            html += '          <label>Systems</label>';
+                            html += '          <span>' + currentMarker.Systems + '</span>';
+                            html += '        </li>';
+                        }
+                        html += '        <li>';
+                        html += '          <label>Available seats</label>';
+                        html += '          <span>';
+                        html += '            <span class="available-seats sold-out">';
+                        html += '              SEATS ARE LIMITED';
+                        html += '            </span>';
+                        html += '          </span>';
+                        html += '        </li>';
+
+                        if (currentMarker.Educator.length > 0) {
+                            var EducatorString = currentMarker.Educator.map(function (value) {
+                                return value;
+                            }).join(', ');
+                            html += '        <li>';
+                            html += '          <label>Educator</label>';
+                            html += '          <span>' + EducatorString + '</span>';
+                            html += '        </li>';
+                        }
+                        html += '      </ul>';
+                        html += '    </a>';
+                        if (currentMarker.Status !== false) {
+                            html += '    <a class="btn" href="' + currentMarker.URL + '">Sign up now</a>';
+                        }
+                        html += '  </div>';
+                        html += '</div>';
+
+                        marker.objInfo = html;
+
+                        // add the click event's listener for each marker to open the info-Window
+                        (function (index, selectedMarker) {
+                            google.maps.event.addListener(selectedMarker, 'click', function () {
+                                if (infoWindow != null) infoWindow.setMap(null);
+                                infoWindow = new google.maps.InfoWindow();
+                                infoWindow.setContent(selectedMarker.objInfo);
+                                infoWindow.open(map, selectedMarker);
+                                selectDataRow(nguyenmapsInViewport[index].Code)
+                            });
+                        })(i, marker)
+                    }
+
+                    // place the marker on the map
+                    marker.setMap(map);
+
+                    if (currentMarker.Code !== 0) {
+                        // add the marker to the viewportMarkers array
+                        viewportMarkers.push(marker);
+                        // Create a new row entry for the table corresponding to the current airport
+                        var currentIndex = viewportMarkers.length - 1;
+                        // Finally, add the <tr> element for the row
+                        divTable += '<div class="item col-6" id="mapid' + currentMarker.Code + '">'
+
+
+                        divTable += '<div class="grid-product__content">';
+                        if (currentMarker.Status !== true) {
+                            divTable += '  <div class="grid-product__tag">';
+                            divTable += '    Sold Out';
+                            divTable += '  </div>';
+                        }
+
+                        divTable += '  <a href="javascript:highlightMarker(' + currentIndex + ', \'mapid' + currentMarker.Code + '\')" class="grid-product__link  grid-product__link--disabled">';
+                        // divTable += '    <div class="over-video">';
+                        // divTable += '      <img class="small--hide" src="//cdn.shopify.com/s/files/1/0130/9425/6699/files/logo-nav-blak-pink_110x.png?v=1543333002" srcset="//cdn.shopify.com/s/files/1/0130/9425/6699/files/logo-nav-blak-pink_110x.png?v=1543333002 1x, //cdn.shopify.com/s/files/1/0130/9425/6699/files/logo-nav-blak-pink_110x@2x.png?v=1543333002 2x" alt="DreamCatchers Hair Extensions" itemprop="logo">';
+                        // divTable += '      <h3>Hands-On <span>training</span></h3>';
+                        // divTable += '    </div>';
+                        if (currentMarker.Photo !== null && currentMarker.Photo !== '') {
+                            divTable += '  <div class="grid-product__image">';
+                            divTable += currentMarker.Photo;
+                            divTable += '  </div>';
+                        }
+                        divTable += '  </a>';
+
+                        divTable += '  <div class="grid-product__meta">';
+                        divTable += '    <a href="javascript:highlightMarker(' + currentIndex + ', \'mapid' + currentMarker.Code + '\')" class="grid-product__link  grid-product__link--disabled">';
+                        divTable += '      <ul>';
+
+                        if (currentMarker.Date.length > 0) {
+                            var dateString = currentMarker.Date.map(function (date) {
+                                return date;
+                            }).join('<br>');
+                            divTable += '        <li>';
+                            divTable += '          <label>Date</label>';
+                            divTable += '          <span>' + dateString + '</span>';
+                            divTable += '        </li>';
+                        }
+
+                        if (currentMarker.Area !== '' && currentMarker.Area !== null) {
+                            divTable += '        <li>';
+                            divTable += '          <label>Location</label>';
+                            divTable += '          <span>' + currentMarker.Area + '</span>';
+                            divTable += '        </li>';
+                        }
+
+                        if (currentMarker.Systems !== '') {
+                            divTable += '        <li>';
+                            divTable += '          <label>Systems</label>';
+                            divTable += '          <span>' + currentMarker.Systems + '</span>';
+                            divTable += '        </li>';
+                        }
+                        divTable += '        <li>';
+                        divTable += '          <label>Available seats</label>';
+                        divTable += '          <span>';
+                        divTable += '            <span class="available-seats sold-out">';
+                        divTable += '              SEATS ARE LIMITED';
+                        divTable += '            </span>';
+                        divTable += '          </span>';
+                        divTable += '        </li>';
+
+                        if (currentMarker.Educator.length > 0) {
+                            var EducatorString = currentMarker.Educator.map(function (value) {
+                                return value;
+                            }).join(', ');
+                            divTable += '        <li>';
+                            divTable += '          <label>Educator</label>';
+                            divTable += '          <span>' + EducatorString + '</span>';
+                            divTable += '        </li>';
+                        }
+                        divTable += '      </ul>';
+                        divTable += '    </a>';
+                        divTable += '  </div>';
+                        divTable += '</div>';
+                        divTable += '</div>';
+                    }
+                    markerCount++;
+                }
+
+                divTable += '</div>'
+                document.getElementById('nguyenmapmenu').innerHTML = divTable;
+            }
+
+            // Function to change the row background color when the corresponding marker is clicked.
+            function selectDataRow(code) {
+                var table = document.getElementById("nguyenmapmenu");
+                table.querySelectorAll('.item').forEach(function (item) {
+                    if (item.id == 'mapid' + code) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            }
+
+            //  The highlightMarker() function opens the InfoWindow object that corresponds
+            //  to the marker in the viewportMarkers array
+
+            function highlightMarker(index, map_id) {
+                var table = document.getElementById("nguyenmapmenu");
+                table.querySelectorAll('.item').forEach(function (item) {
+                    item.classList.remove('active');
+                });
+                document.getElementById(map_id).classList.add('active');
+
+                if (infoWindow != null) infoWindow.setMap(null);
+                infoWindow = new google.maps.InfoWindow();
+                infoWindow.setContent(viewportMarkers[index].objInfo);
+                infoWindow.open(map, viewportMarkers[index]);
+
+                // Bounce the marker for two seconds when the corresonding link is clicked in the result box.
+                viewportMarkers[index].setAnimation(google.maps.Animation.BOUNCE);
+                setTimeout(function () {
+                    viewportMarkers[index].setAnimation(null);
+                }, 1250); // This sets the time for the bounce. You can make it longer or shorter.
+            }
+            // Pan the map to center the marker when the "CODE" link is clicked in the results box.
+            function zoomMarker(index) {
+                map.panTo(viewportMarkers[index].getPosition());
+            }
+        }
+    </script>
+</body>
+
+</html>
